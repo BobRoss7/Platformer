@@ -1,0 +1,17 @@
+CREATE
+alarm[0] = 12
+image_speed = 0.35
+
+ALARM 0
+image_speed = 0
+image_index = 3
+
+alarm[1] = 90
+alarm[2] = 20
+
+ALARM 1
+image_speed = 0.35
+alarm[0] = 12
+
+ALARM 2
+image_index = 0
