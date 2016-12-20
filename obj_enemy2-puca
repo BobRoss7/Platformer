@@ -1,0 +1,50 @@
+CREATE
+dir=-1;
+movespeed=0;
+hsp=0;
+shoot = 0
+
+ALARM 0
+instance_create (x,y,obj_bullet)
+alarm[0] = random_range (90,120)
+
+STEP
+hsp = dir * movespeed;
+
+//Horizontal collision
+if (place_meeting(x+hsp,y,obj_ground))
+{
+    while (!place_meeting(x+sign(hsp),y,obj_ground))
+    {
+        x+=sign(hsp);
+    }
+    hsp = 0;
+    dir *= -1
+    }
+x+=hsp 
+
+if hsp >0 image_xscale = -1
+else image_xscale = 1 
+var difY = obj_enemy2.y - obj_player2.y
+if (distance_to_object (obj_player2) <300 && shoot == 0 && difY<100) shoot = 1
+
+if shoot == 1
+{
+    alarm [0] = 15 
+    shoot = 2
+}
+
+//Player collision
+
+if (place_meeting(x,y,obj_player2))
+{
+    if (obj_player2.y < y )
+    {
+        with (obj_player2) vsp = -jumpspeed;
+        instance_destroy();
+    }
+    else 
+    {
+        room_restart();
+    }
+}
