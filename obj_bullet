@@ -1,0 +1,18 @@
+CREATE 
+dir = -1
+movespeed = 6
+
+var facing = obj_enemy3.x > obj_player2.x
+
+if facing = true dir= -1
+else dir = 1
+
+STEP
+hsp = dir * movespeed
+x+=hsp
+
+if place_meeting (x,y,obj_ground) instance_destroy();
+if place_meeting (x,y,obj_player2) room_restart();
+
+OUTSIDE ROOM
+instance_destroy();
