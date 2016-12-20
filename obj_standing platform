@@ -1,0 +1,12 @@
+CREATE
+sprite_index = -1;
+
+STEP
+if (instance_exists (obj_player2))
+{
+    if  (round(obj_player2.y + (obj_player2.sprite_height/2)-3) > y) ||(obj_player2.key_down) mask_index = -1
+    else mask_index = spr_platform
+}
+
+DRAW
+draw_sprite(spr_platform,0,x,y)
