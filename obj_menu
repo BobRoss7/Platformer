@@ -1,0 +1,30 @@
+// objekt nema spritea, ubaci ga bilo gdje u sobu
+
+CREATE
+menu [0] = "";
+
+menu [1] = "";
+
+space = 64;
+mpos = 0;
+
+global.position = 1
+
+STEP
+var move = 0
+move = move - max(keyboard_check_pressed(vk_up),keyboard_check_pressed(ord("W")),gamepad_axis_value(0, gp_axislv)<0,gamepad_button_check_pressed (0,gp_padu),0);
+move += max(keyboard_check_pressed(vk_down),keyboard_check_pressed(ord("S")),gamepad_axis_value(0, gp_axislv)>0,gamepad_button_check_pressed (0,gp_padd),0);
+
+if (move != 0)
+{
+    mpos += move;
+    if (mpos <0) mpos = array_length_1d(menu) - 1;
+    if (mpos > array_length_1d(menu) -1) mpos = 0;
+}
+
+var push;
+push = max(keyboard_check_released(vk_enter),keyboard_check_released(vk_space),keyboard_check_released(vk_shift),gamepad_button_check_released(0,gp_face1),0);
+if (push = 1) scr_menu();
+
+if mpos = 0 global.position = 1
+else global.position = 2
